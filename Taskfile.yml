@@ -35,6 +35,11 @@ tasks:
     desc: Run the assembly code for atividade 02
     cmds:
       - dasm atividade02.asm -f3 -v0 -oatividade02.bin
+
+  atividade03:
+    desc: Run the assembly code for atividade 03
+    cmds:
+      - dasm atividade03.asm -f3 -v0 -oatividade03.bin
   clean:
     desc: Clean up generated binary files
     cmds:
