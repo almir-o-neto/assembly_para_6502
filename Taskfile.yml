@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+vars:
+  GREETING: Hello, world!
+
+tasks:
+  default:
+    desc: Print a greeting message
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  nova_atividade:
+    desc: Cria o próximo arquivo de atividade baseado no maior índice existente
+    cmds:
+      - |
+        idx=$(ls atividade*.asm 2>/dev/null | sed -E 's/atividade([0-9]+)\.asm/\1/' | sort -n | tail -1)
+        if [ -z "$idx" ]; then
+          novo_idx=1
+        else
+          novo_idx=$((idx + 1))
+        fi
+        novo_nome="atividade$(printf '%02d' $novo_idx).asm"
+        touch "$novo_nome"
+        echo "Arquivo $novo_nome criado."
+    silent: false
+  atividade01:
+    desc: Run the assembly code for atividade 01
+    cmds:
+      - dasm atividade01.asm -f3 -v0 -oatividade01.bin
+    
+  atividade02:
+    desc: Run the assembly code for atividade 02
+    cmds:
+      - dasm atividade02.asm -f3 -v0 -oatividade02.bin
+  clean:
+    desc: Clean up generated binary files
+    cmds:
+      - rm -f *.bin
