@@ -20,7 +20,7 @@ Atividade
     tya
     sta $80,Y
     dey
-    bne Atividade
+    bpl Atividade
 
     jmp Start
     org $FFFC
