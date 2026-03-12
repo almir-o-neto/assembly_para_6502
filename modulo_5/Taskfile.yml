@@ -15,8 +15,8 @@ tasks:
   build:
     desc: Compile all asm files
     cmds:
-      - dasm *.asm -f3 -v0 -ocartridge.bin
+      - dasm *.asm -f3 -v0 -ocartridge.bin -lcartridge.lst -scartridge.sym
   clean:
     desc: Remove generated binary files
     cmds:
-      - rm -f *.bin
+      - rm -f *.bin *.lst *.sym
